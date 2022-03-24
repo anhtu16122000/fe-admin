@@ -4,9 +4,9 @@ import Login from '../pages/Login'
 
 const AuthRouters = () => {
   return (
-    // <Routes>
+    <Routes path = '/'>
         <Route path = "/login" element = {<Login/>} />
-    // </Routes>
+    </Routes>
   )
 }
 

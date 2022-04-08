@@ -5,7 +5,6 @@ import * as api from '../api'
 function* fetchDataLogin(action) {
     try {
         const { data } = yield call(api.fetchLogin, action.type)
-        console.log('data', data)
         // yield put(userSlice.actions.request(data))
     } catch (error) {
         console.log('error', error)

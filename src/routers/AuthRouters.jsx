@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Login from '../pages/Login'
+import Loading from '../layout/Loading'
+
+const Login = Loading( lazy( () => import('../pages/auth/Login')) )
 
 const AuthRouters = () => {
+
   return (
-    <Routes path = '/'>
-        <Route path = "/login" element = {<Login/>} />
+    <Routes>
+      <Route path = '/auth'>
+          <Route index element = {<Login/>}/>
+      </Route>
     </Routes>
   )
 }

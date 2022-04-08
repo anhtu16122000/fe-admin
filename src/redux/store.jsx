@@ -17,7 +17,8 @@ import { REHYDRATE } from "redux-persist/es/constants";
 const persistConfig = {
     key: 'root',
     version: 1,
-    storage
+    storage,
+    whitelist: ['user']
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

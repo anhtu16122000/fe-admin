@@ -3,15 +3,21 @@ import { createSlice } from "@reduxjs/toolkit"
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        isLogin: true,
+        isLogin: false,
+        loading: false,
         data: {}
     },
     reducers: {
         request: (state, action) => {
-            console.log('action', action)
-            return {
-                isLogin: action.payload   
-            }
+            state.loading = true
+        },
+        success: (state, action) => {
+            state.isLogin = true
+            state.loading = false
+        },
+        fail: (state, action) => {
+            state.isLogin = false
+            state.loading = false
         }
     }
 })

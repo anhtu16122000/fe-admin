@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react'
-import DashboardRouters from './DashboardRouters' 
-import AuthRouters from './AuthRouters' 
-import AuthGuard from './AuthGuard'
+import React from 'react'
+import MainLayout from '../layout/MainLayout'
 import ClientGuard from './ClientGuard'
+import DashboardRouters from './DashboardRouters'
+import AuthRouters from './AuthRouters'
 
 const Routers = () => {
 
     return (
         <React.Fragment>
-            <AuthGuard>
+            <MainLayout>
                 <DashboardRouters/>
-            </AuthGuard>
+            </MainLayout>
             <ClientGuard>
                 <AuthRouters/>
             </ClientGuard>

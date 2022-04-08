@@ -1,19 +1,20 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { userState$ } from '../redux/selectors' 
+import { userState } from '../redux/selectors' 
 
 
 const AuthGuard = ( { children } ) => {
-    const dispatch = useDispatch()
+    
     const navigate = useNavigate()
-    const { isLogin } = useSelector(userState$)
+    const { isLogin } = useSelector(userState)
 
-    React.useEffect( () => {
-        if(!isLogin) {
-            navigate('/login')
-        }
-    }, [isLogin])
+    // React.useEffect( () => {
+    //     if(!isLogin) {
+    //         console.log('chua login', isLogin)
+    //         navigate('/auth')
+    //     }
+    // }, [isLogin])
 
     return children
 }

@@ -42,8 +42,9 @@ const theme = (customization) => {
             values: {
                 xs: 0,
                 sm: 600,
+                sm1: 620,
                 md: 960,
-                lg: 200,
+                lg: 1200,
                 xl: 1920
             }
         },

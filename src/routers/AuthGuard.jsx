@@ -9,12 +9,12 @@ const AuthGuard = ( { children } ) => {
     const navigate = useNavigate()
     const { isLogin } = useSelector(userState)
 
-    // React.useEffect( () => {
-    //     if(!isLogin) {
-    //         console.log('chua login', isLogin)
-    //         navigate('/auth')
-    //     }
-    // }, [isLogin])
+    React.useEffect( () => {
+        if(!isLogin) {
+            console.log('chua login', isLogin)
+            navigate('/auth/login')
+        }
+    }, [isLogin])
 
     return children
 }

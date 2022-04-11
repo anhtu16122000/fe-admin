@@ -8,12 +8,12 @@ const Routers = () => {
 
     return (
         <React.Fragment>
-            <MainLayout>
-                <DashboardRouters/>
-            </MainLayout>
             <ClientGuard>
                 <AuthRouters/>
             </ClientGuard>
+            <MainLayout>
+                <DashboardRouters/>
+            </MainLayout>
         </React.Fragment>
     )
 }

@@ -8,7 +8,7 @@ const DashboardRouters = () => {
 
   return (
     <Routes>
-      <Route path='/'>
+      <Route exact path='/'>
         <Route index element={<Home />} />
         <Route path="/product" element={<ProductManage />} />
       </Route>

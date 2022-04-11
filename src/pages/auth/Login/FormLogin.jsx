@@ -1,95 +1,75 @@
-import React from 'react'
+import { Box, FormControlLabel, TextField, makeStyles, useTheme, FormControl } from '@material-ui/core'
+import { Input, Stack, Checkbox, Link, Button, FormHelperText } from '@mui/material'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { makeStyles } from '@material-ui/core'
-import { InputLabel, FormControl, FormHelperText, OutlinedInput, TextField } from '@mui/material'
+import React from 'react'
 
-
-// style constant
-const useStyles = makeStyles((theme) => ({
-    redButton: {
-        fontSize: '1rem',
-        fontWeight: 500,
-        backgroundColor: theme.palette.grey[50],
-        border: '1px solid',
-        borderColor: theme.palette.grey[100],
-        color: theme.palette.grey[700],
-        textTransform: 'none',
-        '&:hover': {
-            backgroundColor: theme.palette.primary.light
-        },
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '0.875rem'
-        }
-    },
-    signDivider: {
-        flexGrow: 1
-    },
-    signText: {
-        cursor: 'unset',
-        margin: theme.spacing(2),
-        padding: '5px 56px',
-        borderColor: theme.palette.grey[100] + ' !important',
-        color: theme.palette.grey[900] + '!important',
-        fontWeight: 500
-    },
-    loginIcon: {
-        marginRight: '16px',
-        [theme.breakpoints.down('sm')]: {
-            marginRight: '8px'
-        }
-    },
-    loginInput: {
-        ...theme.typography.customInput
-    }
+const useStyle = makeStyles(theme => ({
+  savePassword: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  }
 }))
 
-const FormLogin = (props, { ...others }) => {
+const FormLogin = () => {
+  const theme = useTheme()
+  const classes = useStyle()
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email('vui lòng nhập đúng email').required('vui lòng nhập vào email'),
+      password: Yup.string().required("vui lòng nhập vào mật khẩu")
+    }),
+    onSubmit: (value) => {
+      console.log('submit', value)
+    }
+  })
 
-    const classes = useStyles()
-
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-        },
-        validationSchema: Yup.object({
-            email: Yup.string().email('Vui lòng nhập vào email')
-                               .required('Vui lòng nhập vào email'),
-            password: Yup.string().required('Vui lòng nhập vào password')
-        })
-    })
-
-    return (
-        <React.Fragment>
-            <form noValidate {...others} autoComplete="off">
-                <FormControl fullWidth error={Boolean(formik.touched.email && formik.errors.email)} className={classes.loginInput}>
-                    <InputLabel htmlFor="outlined-adornment-email-login">Email</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-email-login"
-                        type="email"
-                        value={formik.values.email}
-                        name="email"
-                        onBlur={formik.handleBlur}
-                        onChange={formik.handleChange}
-                        label="Email Address"
-                        inputProps={{
-                            classes: {
-                                notchedOutline: classes.notchedOutline
-                            }
-                        }}
-                    />
-                    {formik.touched.email && formik.errors.email && (
-                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                            {' '}
-                            {formik.errors.email}{' '}
-                        </FormHelperText>
-                    )}
-                </FormControl>
-
-            </form>
-        </React.Fragment>
-    )
+  return (
+    <form onSubmit={formik.handleSubmit} noValidate autoComplete="off" >
+      <Stack minWidth={350}>
+        <FormControl >
+          <TextField name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            type="email"
+            label="Email"
+            variant="filled"
+            error={formik.touched.email && formik.errors.email}
+          />
+          <FormHelperText error >
+            { (formik.touched.email && formik.errors.email) || " "}
+          </FormHelperText>
+          <TextField name="password"
+            type="password"
+            label="Mật khẩu"
+            variant="filled"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.password && formik.errors.password}
+          />
+          <FormHelperText error>
+            {( formik.touched.password && formik.errors.password) || " "}
+          </FormHelperText>
+          <Box className={classes.savePassword}>
+            <FormControlLabel
+              control={<Checkbox color="secondary" />}
+              label="Lưu đăng nhập"
+            />
+            <Link to="/auth/fogot-password" sx={{ cursor: 'pointer', textDecoration: 'none', color: theme.palette.primary.main, fontSize: 16 }}>
+              Quên mật khẩu?
+            </Link>
+          </Box>
+          <Button type="submit" variant="contained" color="secondary">Đăng nhập</Button>
+        </FormControl>
+      </Stack>
+    </form>
+  )
 }
 
 export default FormLogin

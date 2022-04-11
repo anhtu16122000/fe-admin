@@ -4,7 +4,11 @@ import React from 'react'
 const AuthWrapper = styled('div')( ({theme}) => {
   return {
     backgroundColor: theme.palette.primary.light,
-    minHeight: '100vh'
+    minHeight: '100vh',
+    [theme.breakpoints.down('md')] : {
+      backgroundColor: 'transparent',
+      marginTop: 20,
+    }
   }
 })
 

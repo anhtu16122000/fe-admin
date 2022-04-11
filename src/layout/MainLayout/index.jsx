@@ -21,19 +21,7 @@ const MainLayout = ({children}) => {
 
     return (
         <AuthGuard>
-            <AppBar
-                enableColorOnDark
-                position = 'fixed'
-                color='inherit'
-                elevation={0}
-                className={classes.appBarWidth}
-            >
-                <Toolbar>
-                   <Header/>
-                </Toolbar>
-            </AppBar>
-                        {children}
-    
+            {children}
         </AuthGuard>
     )
 }

@@ -1,6 +1,7 @@
 import { Box, FormControlLabel, TextField, makeStyles, useTheme, FormControl } from '@material-ui/core'
 import { Input, Stack, Checkbox, Link, Button, FormHelperText } from '@mui/material'
 import { useFormik } from 'formik'
+import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import React from 'react'
 
@@ -15,6 +16,8 @@ const useStyle = makeStyles(theme => ({
 const FormLogin = () => {
   const theme = useTheme()
   const classes = useStyle()
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -61,7 +64,12 @@ const FormLogin = () => {
               control={<Checkbox color="secondary" />}
               label="Lưu đăng nhập"
             />
-            <Link to="/auth/fogot-password" sx={{ cursor: 'pointer', textDecoration: 'none', color: theme.palette.primary.main, fontSize: 16 }}>
+            <Link sx={{ cursor: 'pointer', textDecoration: 'none', color: theme.palette.primary.main, fontSize: 16, }}
+              onClick={ e => {
+                e.preventDefault()
+                navigate("/auth/forgot-password")
+              }}
+            >
               Quên mật khẩu?
             </Link>
           </Box>

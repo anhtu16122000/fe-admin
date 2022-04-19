@@ -6,7 +6,7 @@ const AuthWrapper = styled('div')( ({theme}) => {
     backgroundColor: theme.palette.primary.light,
     minHeight: '100vh',
     [theme.breakpoints.down('md')] : {
-      backgroundColor: 'transparent',
+      backgroundColor: 'white',
       marginTop: 20,
     }
   }

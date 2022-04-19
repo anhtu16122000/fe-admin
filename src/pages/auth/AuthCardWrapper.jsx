@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/core'
 import React from 'react'
 import MainCard from '../../components/common/MainCard'
+import NavMotion from '../../layout/NavMotion'
 
-const useStyles = makeStyles( theme => ({
+const useStyles = makeStyles(theme => ({
     card: {
         maxWidth: '475px',
         '& > *': {
@@ -24,7 +25,7 @@ const useStyles = makeStyles( theme => ({
     }
 }))
 
-const AuthCardWrapper = ({children, ...other}) => {
+const AuthCardWrapper = ({ children, ...other }) => {
     const classes = useStyles()
     return (
         <MainCard className={classes.card} contentClass={classes.content} {...other} >

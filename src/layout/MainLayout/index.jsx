@@ -15,8 +15,6 @@ const useStyle = makeStyles( (theme) => ({
 }))
 
 const MainLayout = ({children}) => {
-    console.log('children', children)
-
     const classes = useStyle()
 
     return (

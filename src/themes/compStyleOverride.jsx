@@ -100,7 +100,7 @@ export function componentStyleOverrides(theme) {
                         color: theme.darkTextSecondary,
                         fontSize: '0.875rem'
                     }
-                }
+                },
             }
         },
         MuiOutlinedInput: {

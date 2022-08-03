@@ -15,7 +15,7 @@ const theme = (customization) => {
         colors: color,
         heading: color.grey900,
         paper: color.paper,
-        backgroundDefault: color.paper,
+        backgroundDefault: color.background,
         background: color.primaryLight,
         darkTextPrimary: color.grey700,
         darkTextSecondary: color.grey500,

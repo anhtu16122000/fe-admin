@@ -5,16 +5,16 @@ import { userState } from '../redux/selectors'
 
 
 const AuthGuard = ( { children } ) => {
-    
+        
     const navigate = useNavigate()
     const { isLogin } = useSelector(userState)
 
-    React.useEffect( () => {
-        if(!isLogin) {
-            console.log('chua login', isLogin)
-            navigate('/auth/login')
-        }
-    }, [isLogin])
+    // React.useEffect( () => {
+    //     if(!isLogin) {
+    //         console.log('chua login', isLogin)
+    //         navigate('/auth/login')
+    //     }
+    // }, [isLogin])
 
     return children
 }

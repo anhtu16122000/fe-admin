@@ -14,10 +14,14 @@ const userSlice = createSlice({
         success: (state, action) => {
             state.isLogin = true
             state.loading = false
+            state.data = action.payload
         },
         fail: (state, action) => {
             state.isLogin = false
             state.loading = false
+        },
+        logout: (state, action) => {
+            state.isLogin = false
         }
     }
 })

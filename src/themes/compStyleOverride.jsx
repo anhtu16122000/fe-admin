@@ -9,7 +9,7 @@ export function componentStyleOverrides(theme) {
                 root: {
                     fontWeight: 500,
                     textTransform: 'capitalize',
-                    borderRadius: '4px'
+                    borderRadius: '4px',
                 }
             }
         },

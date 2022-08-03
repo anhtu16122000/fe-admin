@@ -1,9 +1,13 @@
 import { Box, FormControlLabel, TextField, makeStyles, useTheme, FormControl } from '@material-ui/core'
 import { Input, Stack, Checkbox, Link, Button, FormHelperText } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
 import { useFormik } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import userSlice from '../../../redux/reducers/userSlice'
+import MyButton from '../../../components/common/MyButton'
 
 const useStyle = makeStyles(theme => ({
   savePassword: {
@@ -16,7 +20,12 @@ const useStyle = makeStyles(theme => ({
 const FormLogin = () => {
   const theme = useTheme()
   const classes = useStyle()
+  
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const handleLogout = () => {
+    dispatch(userSlice.actions.logout())
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -28,12 +37,12 @@ const FormLogin = () => {
       password: Yup.string().required("vui lòng nhập vào mật khẩu")
     }),
     onSubmit: (value) => {
-      console.log('submit', value)
+      dispatch(userSlice.actions.request(value))
     }
   })
 
   return (
-    <form onSubmit={formik.handleSubmit} noValidate autoComplete="off" >
+    <form onSubmit={formik.handleSubmit} noValidate autoComplete="on" >
       <Stack minWidth={350}>
         <FormControl >
           <TextField name="email"
@@ -46,7 +55,7 @@ const FormLogin = () => {
             error={formik.touched.email && formik.errors.email}
           />
           <FormHelperText error >
-            { (formik.touched.email && formik.errors.email) || " "}
+            {(formik.touched.email && formik.errors.email) || " "}
           </FormHelperText>
           <TextField name="password"
             type="password"
@@ -57,15 +66,15 @@ const FormLogin = () => {
             error={formik.touched.password && formik.errors.password}
           />
           <FormHelperText error>
-            {( formik.touched.password && formik.errors.password) || " "}
+            {(formik.touched.password && formik.errors.password) || " "}
           </FormHelperText>
           <Box className={classes.savePassword}>
             <FormControlLabel
               control={<Checkbox color="secondary" />}
               label="Lưu đăng nhập"
             />
-            <Link sx={{ cursor: 'pointer', textDecoration: 'none', color: theme.palette.primary.main, fontSize: 16, }}
-              onClick={ e => {
+            <Link sx={{ cursor: 'pointer', textDecoration: 'none', color: '#673ab7', fontSize: 16, }}
+              onClick={e => {
                 e.preventDefault()
                 navigate("/auth/forgot-password")
               }}
@@ -73,7 +82,8 @@ const FormLogin = () => {
               Quên mật khẩu?
             </Link>
           </Box>
-          <Button type="submit" variant="contained" color="secondary">Đăng nhập</Button>
+          <MyButton type="submit"  variant="contained" color="secondary" >Đăng nhập</MyButton>
+          <Button type="button" variant="contained" color="secondary" onClick={handleLogout}>Đăng xuất</Button>
         </FormControl>
       </Stack>
     </form>

@@ -7,13 +7,12 @@ import { userState } from '../redux/selectors'
 const ClientGuard = ( { children } ) => {
     const navigate = useNavigate()
     const { isLogin } = useSelector(userState)
-
-    React.useEffect( () => {
-        if(isLogin) {
-            console.log('da login', isLogin)
-            navigate(config.defaultPath)
-        }
-    }, [isLogin])
+    
+    // React.useEffect( () => {
+    //     if(isLogin) {
+    //         navigate(config.defaultPath)
+    //     }
+    // }, [isLogin])
 
     return children
 }

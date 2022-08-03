@@ -6,30 +6,25 @@ import store, { persistor } from './redux/store';
 import React, { useEffect } from 'react';
 import Routers from './routers'
 import theme from './themes'
-import { CssBaseline } from '@material-ui/core'
+import { CssBaseline } from '@mui/material'
 import { StyledEngineProvider } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import ScrollTopContainer from './layout/ScrollTopContainer';
 import userSlice from './redux/reducers/userSlice'
-
+import { GlobalStyles } from '@mui/material'
 
 function App() {
   const customization = useSelector(customizationState)
-  const  dispatch = useDispatch()
 
-  useEffect( () => {
-    dispatch(userSlice.actions.fail())
-  }, [])
-  
-  return (    
+  return (
     <StyledEngineProvider injectFirst>
-      <CssBaseline/>
-      <ThemeProvider theme = {theme(customization)}>
+      <ThemeProvider theme={theme(customization)}>
+        <CssBaseline />
         <ScrollTopContainer>
-          <Routers/>
+          <Routers />
         </ScrollTopContainer>
-      </ThemeProvider>  
+      </ThemeProvider>
     </StyledEngineProvider>
   );
 }
